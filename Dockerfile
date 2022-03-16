@@ -1,20 +1,20 @@
-# build stage
-FROM node:lts-alpine as build-stage
+# pull official base image
+FROM node:13.12.0-alpine
+
+# set working directory
 WORKDIR /app
 
-ARG GATEWAY_URL="http://localhost:8123"
-ARG APP_URL="http://localhost:8080"
-ENV VUE_APP_API_GATEWAY ${GATEWAY_URL}
-ENV VUE_APP_URL ${APP_URL}}
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-# production stage
-FROM nginx:stable-alpine as production-stage
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# add app
+COPY . ./
+
+# start app
+CMD ["npm", "start"]
