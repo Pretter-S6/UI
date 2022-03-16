@@ -39,8 +39,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: rienkengbrenghof/ui:${{ env.RELEASE_VERSION }}
+          tags: rienkengbrenghof/ui
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            "GATEWAY_URL=${{ secrets.GATEWAY_URL }}"
-            "APP_URL=${{ secrets.APP_URL }}"
+
