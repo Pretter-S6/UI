@@ -18,7 +18,6 @@ const Login = () => {
         };
         try {
             var text = process.env.REACT_APP_API_GATEWAY + 'api/login';
-            alert(text);
             const resp = await axios.get(text, {params : {username: UnameOrEmail, password: password}, headers: headers});
             person = resp.data;
 
