@@ -1,30 +1,53 @@
 import { useState } from "react";
 import axios from 'axios';
+import './App.css';
+
+
 
 const Login = () => {
     const [UnameOrEmail, setUnameOrEmail] = useState("");
     const [password, setpassword] = useState("");
-    const [persons] = useState("");
+    let [person] = useState("");
 
-    const handlesubmit = (e) => {
+
+    const sendGet = async (e) => {
         e.preventDefault();
 
-        axios.get(`https://localhost:44371/login`, {params : {username: UnameOrEmail, password: password}})
-            .then(res => {
-                const persons = res.data;
-                this.setState({ persons });
-            });
-        console.log(persons.toString())
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            alert('dev')
+        } else {
+            alert('prod')
+        }
+
+        const headers = {
+            "Content-Type": "application/json"
+        };
+        try {
+            var text = process.env.REACT_APP_API_GATEWAY + 'api/login';
+            const resp = await axios.get(text, {params : {username: UnameOrEmail, password: password}, headers: headers});
+            person = resp.data;
+
+        } catch (err) {
+            // Handle Error Here
+            alert(err);
+        }
+        if(person.userID > 0){
+            alert('Ingelogd');
+        }
+        else{
+            alert('Onjuiste combinatie')
+        }
     };
 
     return (
-        <div>
-            <form onSubmit={handlesubmit}>
+        <div id="loginFrame">
+            <form id="loginText" onSubmit={sendGet}>
                 <div className="form-group">
                     <label htmlFor="Email or UserName">Email or username</label>
+                    <p></p>
                     <input
                         type="text"
-                        placeholder="email or username"
+                        placeholder="Email or username"
                         required
                         value={UnameOrEmail}
                         onChange={(e) => setUnameOrEmail(e.target.value)}
@@ -32,7 +55,9 @@ const Login = () => {
                     />
                 </div>
                 <div className="form-group">
+                    <p></p>
                     <label htmlFor="Password">Password</label>
+                    <p></p>
                     <input
                         type="Password"
                         placeholder="Password"
@@ -42,9 +67,13 @@ const Login = () => {
                         className="Input"
                     />
                 </div>
+                <p></p>
                 <button type="submit">Log in</button>
             </form>
         </div>
     );
 };
+
+
 export default Login;
+

@@ -2,6 +2,23 @@
   text-align: center;
 }
 
+#loginFrame {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  z-index: 15;
+  top: 43%;
+  left: 43%;
+  margin: -100px 0 0 -150px;
+  background: white;
+  border: 2px groove;
+}
+
+#loginText {
+  margin: 10px;
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
