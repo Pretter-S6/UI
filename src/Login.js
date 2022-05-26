@@ -13,17 +13,12 @@ const Login = () => {
     const sendGet = async (e) => {
         e.preventDefault();
 
-        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-            alert('dev')
-        } else {
-            alert('prod')
-        }
-
         const headers = {
             "Content-Type": "application/json"
         };
         try {
             var text = process.env.REACT_APP_API_GATEWAY + 'api/login';
+            alert(text);
             const resp = await axios.get(text, {params : {username: UnameOrEmail, password: password}, headers: headers});
             person = resp.data;
 
