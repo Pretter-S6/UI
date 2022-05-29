@@ -1,17 +1,20 @@
 import { useState } from "react";
 import axios from 'axios';
 import './App.css';
-
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
     const [UnameOrEmail, setUnameOrEmail] = useState("");
     const [password, setpassword] = useState("");
     let [person] = useState("");
-
+    const [cookies, setCookie] = useCookies(["name"]);
+    const navigate = useNavigate();
 
     const sendGet = async (e) => {
         e.preventDefault();
+
 
         const headers = {
             "Content-Type": "application/json"
@@ -27,6 +30,7 @@ const Login = () => {
         }
         if(person.userID > 0){
             alert('Ingelogd');
+            localStorage.setItem('userid', person.userID);
         }
         else{
             alert('Onjuiste combinatie')
