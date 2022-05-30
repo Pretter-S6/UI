@@ -4,27 +4,32 @@ import axios from "axios";
 class Home extends React.Component {
 
     state = {
-        tweets: ""
+        tweets: []
     };
 
-    async componentDidMount() {
+    componentDidMount() {
         var text = process.env.REACT_APP_API_GATEWAY + 'api/tweets';
-        const resp = await axios.get(text);
-        this.state.tweets = resp.data;
-
+        axios.get(text)
+            .then(res => {
+                const tweets = res.data;
+                this.setState({ tweets });
+            })
     }
 
+
     render() {
+        const tweets = this.state.tweets;
         return (
             <div>
                 <p>Rienk Engbrenghof</p>
-                {this.state.tweets.length > 0 && (
-                    <ul>
-                        {this.state.tweets.map(tweet => (
-                            <li key={tweet.id}>{tweet.text}</li>
-                        ))}
-                    </ul>
-                )}
+                <div>
+                    {tweets.map(tweet => {
+                        return(
+                            <p>{tweet.id + " " + tweet.text}</p>
+                        )
+                    })}
+                </div>
+
             </div>
         );
     }
