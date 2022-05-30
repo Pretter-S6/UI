@@ -29,8 +29,8 @@ const Login = () => {
             alert(err);
         }
         if(person.userID > 0){
-            alert('Ingelogd');
             localStorage.setItem('userid', person.userID);
+            window.location.reload();
         }
         else{
             alert('Onjuiste combinatie')

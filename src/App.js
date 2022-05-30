@@ -6,14 +6,19 @@ import React from "react";
 import { Routes, Route } from "react-router-dom"
 
 function App() {
-  return (
-      <div className="App">
-          <Routes>
-              <Route path="/" element={ <Home/> } />
-              <Route path="login" element={ <Login/> } />
-          </Routes>
-      </div>
-  );
+    if(localStorage.getItem("userid") === null || localStorage.getItem("userid") === '0') {
+        return (
+            <div className="LoginPage">
+                <Login />
+            </div>
+        )
+    }
+
+    return (
+        <div className="App">
+            <Home />
+        </div>
+    );
 }
 
 export default App;
