@@ -5,10 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Scan the webapplication
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Use Node.js $16.x
+        uses: actions/setup-node@v3
         with:
-          ref: master
+          node-version: $16.x
+      - run: npm ci
+      - run: npm install
+      - run: npm run build --if-present
+      - run: serve -s build
+      
       - name: install npm
         run: npm install
       - name: build
