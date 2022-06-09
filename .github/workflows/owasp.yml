@@ -9,10 +9,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
-      - name: login docker
-        run: docker login --username rienkengbrenghof --password Bpp4rAEpfL
-      - name: run docker image
-        run: docker run rienkengbrenghof/ui:latest
+      - name: build
+        run: npm run build
+      - name: install serve
+        run: npm install -g serve 
+      - name: serve build
+        run: serve -s build
 
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.4.0
