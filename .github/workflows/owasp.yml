@@ -9,6 +9,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
+      - name: login docker
+        run: docker login --username rienkengbrenghof --password Bpp4rAEpfL
       - name: run docker image
         run: docker run rienkengbrenghof/frontend:latest
 
