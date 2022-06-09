@@ -9,6 +9,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
+      - name: install npm
+        run: npm install
       - name: build
         run: npm run build
       - name: install serve
