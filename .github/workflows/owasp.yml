@@ -1,28 +1,21 @@
-on: [push]
 name: owasp
+
+on: [push]
+
 jobs:
-  zap_scan:
+  build:
+
     runs-on: ubuntu-latest
-    name: Scan the webapplication
+
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 16.14.0
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.14.0
+          node-version: '12.x'
       - run: npm ci
-      - run: npm install
       - run: npm run build --if-present
-      - run: serve -s build
-      
-      - name: install npm
-        run: npm install
-      - name: build
-        run: npm run build
-      - name: install serve
-        run: npm install -g serve 
-      - name: serve build
-        run: serve -s build
+      - run: npm test
 
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.4.0
