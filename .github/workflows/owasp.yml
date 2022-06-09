@@ -12,7 +12,7 @@ jobs:
       - name: login docker
         run: docker login --username rienkengbrenghof --password Bpp4rAEpfL
       - name: run docker image
-        run: docker run rienkengbrenghof/frontend:latest
+        run: docker run rienkengbrenghof/ui:latest
 
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.4.0
