@@ -40,6 +40,3 @@ jobs:
           push: true
           tags: rienkengbrenghof/ui:latest
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            "GATEWAY_URL=${{ secrets.GATEWAY_URL }}"
-            "APP_URL=${{ secrets.APP_URL }}"
