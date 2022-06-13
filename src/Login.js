@@ -3,8 +3,7 @@ import axios from 'axios';
 import './App.css';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { gapi } from 'gapi-script';
+
 import LoginButton from './components/login-button';
 
 const Login = () => {
@@ -67,10 +66,14 @@ const Login = () => {
                         className="Input"
                     />
                 </div>
-                <p></p>
+
                 <button type="submit">Log in</button>
             </form>
-            <LoginButton/>
+            <center>
+
+                <LoginButton/>
+            </center>
+
         </div>
     );
 };

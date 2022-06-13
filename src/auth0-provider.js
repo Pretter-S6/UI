@@ -6,7 +6,6 @@ const Auth0ProviderWithHistory = ({ children }) => {
     const domain = "https://accounts.google.com/o/oauth2/auth";
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
     const redirectUrl = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
-    alert(redirectUrl);
     const history = useNavigate();
 
     const onRedirectCallback = (appState) => {
