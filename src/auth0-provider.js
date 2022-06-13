@@ -9,7 +9,9 @@ const Auth0ProviderWithHistory = ({ children }) => {
     const history = useNavigate();
 
     const onRedirectCallback = (appState) => {
-        history.push(appState?.returnTo || window.location.pathname);
+        alert("a");
+        localStorage.setItem('userid', 1);
+        history.push(redirectUrl);
     };
 
     return (
@@ -22,6 +24,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
             {children}
 
         </Auth0Provider>
+        
     );
 
 };

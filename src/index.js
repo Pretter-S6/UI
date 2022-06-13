@@ -9,9 +9,9 @@ import Auth0ProviderWithHistory from './auth0-provider';
 //
 ReactDOM.render(
     <BrowserRouter>
-        <Auth0ProviderWithHistory>
+
             <App />
-        </Auth0ProviderWithHistory>
+
     </BrowserRouter>,
   document.getElementById('root')
 

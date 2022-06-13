@@ -71,7 +71,7 @@ const Login = () => {
             </form>
             <center>
 
-                <LoginButton/>
+
             </center>
 
         </div>
