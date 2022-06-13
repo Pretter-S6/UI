@@ -5,8 +5,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { gapi } from 'gapi-script';
-import LoginButton from "./components/login";
-
+import LoginButton from './components/login-button';
 
 const Login = () => {
     const [UnameOrEmail, setUnameOrEmail] = useState("");
@@ -71,6 +70,7 @@ const Login = () => {
                 <p></p>
                 <button type="submit">Log in</button>
             </form>
+            <LoginButton/>
         </div>
     );
 };
