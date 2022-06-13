@@ -29,6 +29,7 @@ const Login = () => {
             // Handle Error Here
             alert(err);
         }
+        
         if(person.userID > 0){
             localStorage.setItem('userid', person.userID);
             window.location.reload();
